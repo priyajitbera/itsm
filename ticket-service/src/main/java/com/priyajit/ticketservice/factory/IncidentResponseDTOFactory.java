@@ -28,7 +28,7 @@ public class IncidentResponseDTOFactory {
                 .primaryEnvironment(incidentTicket.getPrimaryEnvironment())
                 .contactType(incidentTicket.getContactType())
                 .originatingGroupId(incidentTicket.getOriginatingGroupId())
-                .assignedGroupId(incidentTicket.getAssignedGroupId())
+                .assigneeId(incidentTicket.getAssigneeId())
                 .assignedGroupId(incidentTicket.getAssignedGroupId())
                 .createdOn(incidentTicket.getCreatedOn())
 

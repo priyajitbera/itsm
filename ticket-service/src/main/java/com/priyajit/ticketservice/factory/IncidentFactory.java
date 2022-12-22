@@ -31,7 +31,7 @@ public class IncidentFactory {
                 .primaryEnvironment(incidentRequestDTO.getPrimaryEnvironment())
                 .contactType(incidentRequestDTO.getContactType())
                 .originatingGroupId(incidentRequestDTO.getOriginatingGroupId())
-                .assignedGroupId(incidentRequestDTO.getAssignedGroupId())
+                .assigneeId(incidentRequestDTO.getAssigneeId())
                 .assignedGroupId(incidentRequestDTO.getAssignedGroupId())
                 .createdOn(incidentRequestDTO.getCreatedOn())
                 .status(incidentStatusService.findIncidentStatusByStatusId(1)) // initially 1 -> OPEN
@@ -84,6 +84,10 @@ public class IncidentFactory {
 
         if (incidentRequestDTO.getOriginatingGroupId() != null)
             incidentTicket.setOriginatingGroupId(incidentRequestDTO.getOriginatingGroupId());
+
+        if(incidentRequestDTO.getAssigneeId() != null){
+            incidentTicket.setAssigneeId(incidentRequestDTO.getAssigneeId());
+        }
 
         if (incidentRequestDTO.getAssignedGroupId() != null)
             incidentTicket.setAssignedGroupId(incidentRequestDTO.getAssignedGroupId());
