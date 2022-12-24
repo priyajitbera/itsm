@@ -61,6 +61,7 @@ public class RequestTicketService {
     public RequestTicket patchRequestTicket(Long ticketId, RequestTicketRequestDTO requestTicketRequestDTO) {
         RequestTicket requestTicket = requestTicketRepository.findById(ticketId)
                 .orElse(null);
+        if (requestTicket == null) return null;
 
         requestTicket = requestTicketFactory.fromRequestTicketRequestDTO(requestTicketRequestDTO, requestTicket);
 

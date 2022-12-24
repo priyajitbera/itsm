@@ -57,6 +57,8 @@ public class IncidentTicketService {
      */
     public IncidentTicket patchIncidentTicket(Long ticketId, IncidentRequestDTO incidentRequestDTO) {
         IncidentTicket incidentTicket = incidentTicketRepository.findById(ticketId).orElse(null);
+        if (incidentTicket == null) return null;
+
         incidentTicket = incidentFactory.fromIncidentRequestDTO(incidentRequestDTO, incidentTicket);
 
         // set ticketId for update
