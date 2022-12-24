@@ -21,7 +21,13 @@ public class RequestTicketService {
     @Autowired
     private RequestStatusService requestStatusService;
 
-    public RequestTicket create(RequestTicketRequestDTO requestTicketRequestDTO) {
+    /**
+     * Creates new Request Ticket
+     *
+     * @param requestTicketRequestDTO dto containing details to create the ticket
+     * @return newly created ticket
+     */
+    public RequestTicket createRequestTicket(RequestTicketRequestDTO requestTicketRequestDTO) {
 
         // for new ticket being created
         // ticketId will be null, createdOn will be current Date, status will be OPEN-1
@@ -34,11 +40,25 @@ public class RequestTicketService {
         return requestTicketRepository.save(requestTicket);
     }
 
-    public RequestTicket get(Long ticketId) {
+    /**
+     * Gets and existing ticket by ticketId
+     *
+     * @param ticketId id to find the ticket
+     * @return the existing ticket if found else null
+     */
+    public RequestTicket getRequestTicket(Long ticketId) {
         return requestTicketRepository.findById(ticketId).orElse(null);
     }
 
-    public RequestTicket updateSpecific(Long ticketId, RequestTicketRequestDTO requestTicketRequestDTO) {
+    /**
+     * Patches existing RequestTicket
+     * Only updates fields which are provided i.e. not null in the dto
+     *
+     * @param ticketId                id of the ticket to patch
+     * @param requestTicketRequestDTO dto containing details to update
+     * @return updated RequestTicket if found else null
+     */
+    public RequestTicket patchRequestTicket(Long ticketId, RequestTicketRequestDTO requestTicketRequestDTO) {
         RequestTicket requestTicket = requestTicketRepository.findById(ticketId)
                 .orElse(null);
 

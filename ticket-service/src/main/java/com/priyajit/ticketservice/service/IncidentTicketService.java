@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Optional;
 
 @Service
 public class IncidentTicketService {
@@ -22,7 +21,13 @@ public class IncidentTicketService {
     @Autowired
     private IncidentFactory incidentFactory;
 
-    public IncidentTicket create(IncidentRequestDTO incidentRequestDTO){
+    /**
+     * Creates new Incident Ticket
+     *
+     * @param incidentRequestDTO dto containing detail to create the ticket
+     * @return newly created IncidentTicket
+     */
+    public IncidentTicket createIncidentTicket(IncidentRequestDTO incidentRequestDTO) {
         IncidentTicket incidentTicket = incidentFactory.fromIncidentRequestDTO(incidentRequestDTO);
 
         // for new ticket being created set createdOn to current time and status to OPEN-1
@@ -32,22 +37,29 @@ public class IncidentTicketService {
         return incidentTicketRepository.save(incidentTicket);
     }
 
-    public IncidentTicket get(Long ticketId){
-        Optional<IncidentTicket> optionalIncidentTicket = incidentTicketRepository.findById(ticketId);
-        return optionalIncidentTicket.orElse(null);
+    /**
+     * Gets an existing ticket by ticketId
+     *
+     * @param ticketId id to find the ticket
+     * @return existing ticket if found else null
+     */
+    public IncidentTicket getIncidentTicket(Long ticketId) {
+        return incidentTicketRepository.findById(ticketId).orElse(null);
     }
 
     /**
-     * Only updates fields which are not null in incidentRequestDTO
-     * @param incidentRequestDTO
-     * @return updated IncidentTicket
+     * Patches existing IncidentTicket
+     * Only updates fields which are provided i.e. not null in the dto
+     *
+     * @param ticketId           id of the ticket to patch
+     * @param incidentRequestDTO dto containing details for the update
+     * @return updated IncidentTicket if found else null
      */
-    public IncidentTicket updateSpecific(IncidentRequestDTO incidentRequestDTO) {
-        Long ticketId = incidentRequestDTO.getTicketId();
+    public IncidentTicket patchIncidentTicket(Long ticketId, IncidentRequestDTO incidentRequestDTO) {
         IncidentTicket incidentTicket = incidentTicketRepository.findById(ticketId).orElse(null);
         incidentTicket = incidentFactory.fromIncidentRequestDTO(incidentRequestDTO, incidentTicket);
 
-        // restore ticketId, as primaryKey will not be changed
+        // set ticketId for update
         incidentTicket.setTicketId(ticketId);
         return incidentTicketRepository.save(incidentTicket);
     }

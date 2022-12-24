@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/inc")
-public class IncidentController {
+public class IncidentTicketController {
 
     @Autowired
     private IncidentTicketService incidentTicketService;
@@ -19,20 +19,23 @@ public class IncidentController {
     private IncidentResponseDTOFactory incidentResponseDTOFactory;
 
     @PostMapping
-    public IncidentResponseDTO create(@RequestBody IncidentRequestDTO incidentRequestDTO){
-        IncidentTicket incidentTicket = incidentTicketService.create(incidentRequestDTO);
+    public IncidentResponseDTO create(@RequestBody IncidentRequestDTO incidentRequestDTO) {
+        IncidentTicket incidentTicket = incidentTicketService.createIncidentTicket(incidentRequestDTO);
         return incidentResponseDTOFactory.fromIncidentTicket(incidentTicket);
     }
 
     @GetMapping("/{ticketId}")
-    public IncidentResponseDTO get(@PathVariable(name="ticketId") Long ticketId){
-        IncidentTicket incidentTicket = incidentTicketService.get(ticketId);
+    public IncidentResponseDTO get(@PathVariable(name = "ticketId") Long ticketId) {
+        IncidentTicket incidentTicket = incidentTicketService.getIncidentTicket(ticketId);
         return incidentResponseDTOFactory.fromIncidentTicket(incidentTicket);
     }
 
-    @PatchMapping
-    public IncidentResponseDTO update(@RequestBody IncidentRequestDTO incidentRequestDTO){
-        IncidentTicket incidentTicket = incidentTicketService.updateSpecific(incidentRequestDTO);
+    @PatchMapping("/{ticketId}")
+    public IncidentResponseDTO patch(
+            @PathVariable(name = "ticketId") Long ticketId,
+            @RequestBody IncidentRequestDTO incidentRequestDTO) {
+
+        IncidentTicket incidentTicket = incidentTicketService.patchIncidentTicket(ticketId, incidentRequestDTO);
         return incidentResponseDTOFactory.fromIncidentTicket(incidentTicket);
     }
 }

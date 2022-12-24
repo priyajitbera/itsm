@@ -21,13 +21,13 @@ public class RequestTicketController {
 
     @PostMapping
     public RequestTicketResponseDTO create(@RequestBody RequestTicketRequestDTO requestRequestDTO) {
-        RequestTicket requestTicket = requestTicketService.create(requestRequestDTO);
+        RequestTicket requestTicket = requestTicketService.createRequestTicket(requestRequestDTO);
         return requestTicketResponseDTOFactory.fromRequestTicket(requestTicket);
     }
 
     @GetMapping("/{ticketId}")
     public RequestTicketResponseDTO get(@PathVariable(name = "ticketId") Long ticketId) {
-        RequestTicket requestTicket = requestTicketService.get(ticketId);
+        RequestTicket requestTicket = requestTicketService.getRequestTicket(ticketId);
         if (requestTicket == null)
             throw new EntityNotFoundException("No RequestTicket found with ticketId" + ticketId);
         return requestTicketResponseDTOFactory.fromRequestTicket(requestTicket);
@@ -38,7 +38,7 @@ public class RequestTicketController {
             @PathVariable(name = "ticketId") Long ticketId,
             @RequestBody RequestTicketRequestDTO requestTicketRequestDTO) {
 
-        RequestTicket requestTicket = requestTicketService.updateSpecific(ticketId, requestTicketRequestDTO);
+        RequestTicket requestTicket = requestTicketService.patchRequestTicket(ticketId, requestTicketRequestDTO);
         return requestTicketResponseDTOFactory.fromRequestTicket(requestTicket);
     }
 }
