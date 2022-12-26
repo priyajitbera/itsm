@@ -7,6 +7,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/ticket-service/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-service-discovery/pom.xml" />
+        <option value="$PROJECT_DIR$/untitled/pom.xml" />
       </list>
     </option>
   </component>

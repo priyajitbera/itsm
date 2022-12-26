@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/eureka-service-discovery/eureka-service-discovery.iml" filepath="$PROJECT_DIR$/eureka-service-discovery/eureka-service-discovery.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/itsm.iml" filepath="$PROJECT_DIR$/.idea/itsm.iml" />
       <module fileurl="file://$PROJECT_DIR$/ticket-service/ticket-service.iml" filepath="$PROJECT_DIR$/ticket-service/ticket-service.iml" />
     </modules>
