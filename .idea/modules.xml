@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/eureka-service-discovery/eureka-service-discovery.iml" filepath="$PROJECT_DIR$/eureka-service-discovery/eureka-service-discovery.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/itsm.iml" filepath="$PROJECT_DIR$/.idea/itsm.iml" />
       <module fileurl="file://$PROJECT_DIR$/ticket-service/ticket-service.iml" filepath="$PROJECT_DIR$/ticket-service/ticket-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
     </modules>
   </component>
 </project>
