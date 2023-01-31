@@ -1,7 +1,7 @@
 package com.priyajit.ticketservice.controller;
 
-import com.priyajit.ticketservice.dto.IncidentRequestDTO;
-import com.priyajit.ticketservice.dto.IncidentResponseDTO;
+import com.priyajit.ticketservice.dto.IncidentTicketRequestDTO;
+import com.priyajit.ticketservice.dto.IncidentTicketResponseDTO;
 import com.priyajit.ticketservice.entity.IncidentTicket;
 import com.priyajit.ticketservice.exception.IncidentTicketNotFoundException;
 import com.priyajit.ticketservice.factory.IncidentResponseDTOFactory;
@@ -21,14 +21,14 @@ public class IncidentTicketController {
     @Autowired
     private IncidentResponseDTOFactory incidentResponseDTOFactory;
 
-    @PostMapping
-    public IncidentResponseDTO create(@RequestBody IncidentRequestDTO incidentRequestDTO) {
-        IncidentTicket incidentTicket = incidentTicketService.createIncidentTicket(incidentRequestDTO);
+    @PostMapping("/new")
+    public IncidentTicketResponseDTO create(@RequestBody IncidentTicketRequestDTO incidentRequestDTO) {
+        IncidentTicket incidentTicket = incidentTicketService.createNewIncidentTicket(incidentRequestDTO);
         return incidentResponseDTOFactory.fromIncidentTicket(incidentTicket);
     }
 
     @GetMapping("/{ticketId}")
-    public IncidentResponseDTO get(@PathVariable(name = "ticketId") Long ticketId) {
+    public IncidentTicketResponseDTO get(@PathVariable(name = "ticketId") Long ticketId) {
         IncidentTicket incidentTicket = incidentTicketService.getIncidentTicket(ticketId);
         if (incidentTicket == null) {
             log.error("No IncidentTicket found with ticketId:{}", ticketId);
@@ -39,11 +39,11 @@ public class IncidentTicketController {
     }
 
     @PatchMapping("/{ticketId}")
-    public IncidentResponseDTO patch(
+    public IncidentTicketResponseDTO patch(
             @PathVariable(name = "ticketId") Long ticketId,
-            @RequestBody IncidentRequestDTO incidentRequestDTO) {
+            @RequestBody IncidentTicketRequestDTO incidentTicketRequestDTO) {
 
-        IncidentTicket incidentTicket = incidentTicketService.patchIncidentTicket(ticketId, incidentRequestDTO);
+        IncidentTicket incidentTicket = incidentTicketService.patchIncidentTicket(ticketId, incidentTicketRequestDTO);
         if (incidentTicket == null) {
             log.error("No IncidentTicket found with ticketId:{}", ticketId);
             throw new IncidentTicketNotFoundException(ticketId);

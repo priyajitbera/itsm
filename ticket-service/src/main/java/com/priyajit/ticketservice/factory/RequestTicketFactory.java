@@ -33,8 +33,8 @@ public class RequestTicketFactory {
                 .requesterId(requestTicketRequestDTO.getRequesterId())
                 .primaryApplicationId(requestTicketRequestDTO.getPrimaryApplicationId())
                 .primaryApplicationInstance(requestTicketRequestDTO.getPrimaryApplicationInstance())
-                .priority(requestPriorityService.getRequestPriorityByPriorityId(requestTicketRequestDTO.getPriorityId()))
-                .requestCategory(requestCategoryService.getRequestCategoryByCategoryId(requestTicketRequestDTO.getRequestCategoryId()))
+                .priority(requestPriorityService.getRequestPriority(requestTicketRequestDTO.getPriorityId()))
+                .requestCategory(requestCategoryService.getRequestCategory(requestTicketRequestDTO.getRequestCategoryId()))
                 .description(requestTicketRequestDTO.getDescription())
                 .location(requestTicketRequestDTO.getLocation())
                 .primaryEnvironment(requestTicketRequestDTO.getPrimaryEnvironment())
@@ -43,7 +43,7 @@ public class RequestTicketFactory {
                 .assignedGroupId(requestTicketRequestDTO.getAssignedGroupId())
                 .assigneeId(requestTicketRequestDTO.getAssigneeId())
                 .createdOn(requestTicketRequestDTO.getCreatedOn())
-                .status(requestStatusService.getRequestStatusByStatusId(requestTicketRequestDTO.getStatusId()))
+                .status(requestStatusService.getRequestStatus(requestTicketRequestDTO.getStatusId()))
                 .timeWorked(requestTicketRequestDTO.getTimeWorked())
                 .build();
     }
@@ -84,12 +84,12 @@ public class RequestTicketFactory {
         // priorityId
         if (requestTicketRequestDTO.getPriorityId() != null)
             requestTicket.setPriority(
-                    requestPriorityService.getRequestPriorityByPriorityId(requestTicketRequestDTO.getPriorityId()));
+                    requestPriorityService.getRequestPriority(requestTicketRequestDTO.getPriorityId()));
 
         // categoryId
         if (requestTicketRequestDTO.getRequestCategoryId() != null)
             requestTicket.setRequestCategory(
-                    requestCategoryService.getRequestCategoryByCategoryId(requestTicketRequestDTO.getRequestCategoryId()));
+                    requestCategoryService.getRequestCategory(requestTicketRequestDTO.getRequestCategoryId()));
 
         // description
         if (requestTicketRequestDTO.getDescription() != null)
@@ -126,11 +126,11 @@ public class RequestTicketFactory {
         // statusId
         if (requestTicketRequestDTO.getStatusId() != null)
             requestTicket.setStatus(
-                    requestStatusService.getRequestStatusByStatusId(
+                    requestStatusService.getRequestStatus(
                             requestTicketRequestDTO.getStatusId()));
 
         // timeWorked
-        if(requestTicketRequestDTO.getTimeWorked() != null)
+        if (requestTicketRequestDTO.getTimeWorked() != null)
             requestTicket.setTimeWorked(requestTicketRequestDTO.getTimeWorked());
 
         return requestTicket;

@@ -21,9 +21,9 @@ public class RequestTicketController {
     @Autowired
     private RequestTicketResponseDTOFactory requestTicketResponseDTOFactory;
 
-    @PostMapping
-    public RequestTicketResponseDTO create(@RequestBody RequestTicketRequestDTO requestRequestDTO) {
-        RequestTicket requestTicket = requestTicketService.createRequestTicket(requestRequestDTO);
+    @PostMapping("/new")
+    public RequestTicketResponseDTO create(@RequestBody RequestTicketRequestDTO requestTicketRequestDTO) {
+        RequestTicket requestTicket = requestTicketService.createNewRequestTicket(requestTicketRequestDTO);
         return requestTicketResponseDTOFactory.fromRequestTicket(requestTicket);
     }
 

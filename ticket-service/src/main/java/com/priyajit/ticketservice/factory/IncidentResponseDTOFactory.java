@@ -1,14 +1,14 @@
 package com.priyajit.ticketservice.factory;
 
-import com.priyajit.ticketservice.dto.IncidentResponseDTO;
+import com.priyajit.ticketservice.dto.IncidentTicketResponseDTO;
 import com.priyajit.ticketservice.entity.IncidentTicket;
 import org.springframework.stereotype.Component;
 
 @Component
 public class IncidentResponseDTOFactory {
 
-    public IncidentResponseDTO fromIncidentTicket(IncidentTicket incidentTicket){
-        return IncidentResponseDTO.builder()
+    public IncidentTicketResponseDTO fromIncidentTicket(IncidentTicket incidentTicket) {
+        return IncidentTicketResponseDTO.builder()
 
                 // format as INC<ticketId> eg: INC12345678
                 .ticketId(incidentTicket.getTicketId())

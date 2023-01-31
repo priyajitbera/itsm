@@ -1,6 +1,6 @@
 package com.priyajit.ticketservice.factory;
 
-import com.priyajit.ticketservice.dto.IncidentRequestDTO;
+import com.priyajit.ticketservice.dto.IncidentTicketRequestDTO;
 import com.priyajit.ticketservice.entity.IncidentTicket;
 import com.priyajit.ticketservice.service.IncidentPriorityService;
 import com.priyajit.ticketservice.service.IncidentStatusService;
@@ -17,88 +17,89 @@ public class IncidentFactory {
     @Autowired
     private IncidentStatusService incidentStatusService;
 
-    public IncidentTicket fromIncidentRequestDTO(IncidentRequestDTO incidentRequestDTO) {
+    public IncidentTicket fromIncidentTicketRequestDTO(IncidentTicketRequestDTO incidentTicketRequestDTO) {
         return IncidentTicket.builder()
-                .ticketId(incidentRequestDTO.getTicketId())
-                .templateId(incidentRequestDTO.getTemplateId())
-                .title(incidentRequestDTO.getTitle())
-                .contactId(incidentRequestDTO.getContactId())
-                .primaryApplicationId(incidentRequestDTO.getPrimaryApplicationId())
-                .symptom(incidentRequestDTO.getSymptom())
-                .priority(incidentPriorityService.getIncidentPriorityByPriorityId(incidentRequestDTO.getPriority()))
-                .description(incidentRequestDTO.getDescription())
-                .location(incidentRequestDTO.getLocation())
-                .primaryEnvironment(incidentRequestDTO.getPrimaryEnvironment())
-                .contactType(incidentRequestDTO.getContactType())
-                .originatingGroupId(incidentRequestDTO.getOriginatingGroupId())
-                .assigneeId(incidentRequestDTO.getAssigneeId())
-                .assignedGroupId(incidentRequestDTO.getAssignedGroupId())
-                .createdOn(incidentRequestDTO.getCreatedOn())
-                .status(incidentStatusService.findIncidentStatusByStatusId(1)) // initially 1 -> OPEN
+                .ticketId(incidentTicketRequestDTO.getTicketId())
+                .templateId(incidentTicketRequestDTO.getTemplateId())
+                .title(incidentTicketRequestDTO.getTitle())
+                .contactId(incidentTicketRequestDTO.getContactId())
+                .primaryApplicationId(incidentTicketRequestDTO.getPrimaryApplicationId())
+                .symptom(incidentTicketRequestDTO.getSymptom())
+                .priority(incidentPriorityService.getIncidentPriority(incidentTicketRequestDTO.getPriority()))
+                .description(incidentTicketRequestDTO.getDescription())
+                .location(incidentTicketRequestDTO.getLocation())
+                .primaryEnvironment(incidentTicketRequestDTO.getPrimaryEnvironment())
+                .contactType(incidentTicketRequestDTO.getContactType())
+                .originatingGroupId(incidentTicketRequestDTO.getOriginatingGroupId())
+                .assigneeId(incidentTicketRequestDTO.getAssigneeId())
+                .assignedGroupId(incidentTicketRequestDTO.getAssignedGroupId())
+                .createdOn(incidentTicketRequestDTO.getCreatedOn())
+                .status(incidentStatusService.getIncidentStatus(1)) // initially 1 -> OPEN
                 .timeWorked(0) // initially zero seconds
                 .build();
     }
 
     /**
-     * Only updates fields which are not null in incidentRequestDTO
-     * @param incidentRequestDTO
+     * Only updates fields which are not null in incidentTicketRequestDTO
+     *
+     * @param incidentTicketRequestDTO
      * @param incidentTicket
      * @return
      */
-    public IncidentTicket fromIncidentRequestDTO(@NotNull IncidentRequestDTO incidentRequestDTO, IncidentTicket incidentTicket) {
+    public IncidentTicket fromIncidentTicketRequestDTO(@NotNull IncidentTicketRequestDTO incidentTicketRequestDTO, IncidentTicket incidentTicket) {
 
-       // only override those fields which are not null in incidentRequestDTO
+        // only override those fields which are not null in incidentTicketRequestDTO
 
-        if (incidentRequestDTO.getTicketId() != null)
-            incidentTicket.setTicketId(incidentRequestDTO.getTicketId());
+        if (incidentTicketRequestDTO.getTicketId() != null)
+            incidentTicket.setTicketId(incidentTicketRequestDTO.getTicketId());
 
-        if (incidentRequestDTO.getTemplateId() != null)
-            incidentTicket.setTemplateId(incidentRequestDTO.getTemplateId());
+        if (incidentTicketRequestDTO.getTemplateId() != null)
+            incidentTicket.setTemplateId(incidentTicketRequestDTO.getTemplateId());
 
-        if (incidentRequestDTO.getTitle() != null)
-            incidentTicket.setTitle(incidentRequestDTO.getTitle());
+        if (incidentTicketRequestDTO.getTitle() != null)
+            incidentTicket.setTitle(incidentTicketRequestDTO.getTitle());
 
-        if (incidentRequestDTO.getContactId() != null)
-            incidentTicket.setContactId(incidentRequestDTO.getContactId());
+        if (incidentTicketRequestDTO.getContactId() != null)
+            incidentTicket.setContactId(incidentTicketRequestDTO.getContactId());
 
-        if (incidentRequestDTO.getPrimaryApplicationId() != null)
-            incidentTicket.setPrimaryApplicationId(incidentRequestDTO.getPrimaryApplicationId());
+        if (incidentTicketRequestDTO.getPrimaryApplicationId() != null)
+            incidentTicket.setPrimaryApplicationId(incidentTicketRequestDTO.getPrimaryApplicationId());
 
-        if (incidentRequestDTO.getSymptom() != null)
-            incidentTicket.setSymptom(incidentRequestDTO.getSymptom());
+        if (incidentTicketRequestDTO.getSymptom() != null)
+            incidentTicket.setSymptom(incidentTicketRequestDTO.getSymptom());
 
-        if (incidentRequestDTO.getPriority() != null)
-            incidentTicket.setPriority(incidentPriorityService.getIncidentPriorityByPriorityId(incidentRequestDTO.getPriority()));
+        if (incidentTicketRequestDTO.getPriority() != null)
+            incidentTicket.setPriority(incidentPriorityService.getIncidentPriority(incidentTicketRequestDTO.getPriority()));
 
-        if (incidentRequestDTO.getDescription() != null)
-            incidentTicket.setDescription(incidentRequestDTO.getDescription());
+        if (incidentTicketRequestDTO.getDescription() != null)
+            incidentTicket.setDescription(incidentTicketRequestDTO.getDescription());
 
-        if (incidentRequestDTO.getLocation() != null)
-            incidentTicket.setLocation(incidentRequestDTO.getLocation());
+        if (incidentTicketRequestDTO.getLocation() != null)
+            incidentTicket.setLocation(incidentTicketRequestDTO.getLocation());
 
-        if (incidentRequestDTO.getPrimaryEnvironment() != null)
-            incidentTicket.setPrimaryEnvironment(incidentRequestDTO.getPrimaryEnvironment());
+        if (incidentTicketRequestDTO.getPrimaryEnvironment() != null)
+            incidentTicket.setPrimaryEnvironment(incidentTicketRequestDTO.getPrimaryEnvironment());
 
-        if (incidentRequestDTO.getContactType() != null)
-            incidentTicket.setContactId(incidentRequestDTO.getContactId());
+        if (incidentTicketRequestDTO.getContactType() != null)
+            incidentTicket.setContactId(incidentTicketRequestDTO.getContactId());
 
-        if (incidentRequestDTO.getOriginatingGroupId() != null)
-            incidentTicket.setOriginatingGroupId(incidentRequestDTO.getOriginatingGroupId());
+        if (incidentTicketRequestDTO.getOriginatingGroupId() != null)
+            incidentTicket.setOriginatingGroupId(incidentTicketRequestDTO.getOriginatingGroupId());
 
-        if(incidentRequestDTO.getAssigneeId() != null){
-            incidentTicket.setAssigneeId(incidentRequestDTO.getAssigneeId());
+        if (incidentTicketRequestDTO.getAssigneeId() != null) {
+            incidentTicket.setAssigneeId(incidentTicketRequestDTO.getAssigneeId());
         }
 
-        if (incidentRequestDTO.getAssignedGroupId() != null)
-            incidentTicket.setAssignedGroupId(incidentRequestDTO.getAssignedGroupId());
+        if (incidentTicketRequestDTO.getAssignedGroupId() != null)
+            incidentTicket.setAssignedGroupId(incidentTicketRequestDTO.getAssignedGroupId());
 
-        if (incidentRequestDTO.getCreatedOn() != null)
-            incidentTicket.setCreatedOn(incidentRequestDTO.getCreatedOn());
+        if (incidentTicketRequestDTO.getCreatedOn() != null)
+            incidentTicket.setCreatedOn(incidentTicketRequestDTO.getCreatedOn());
 
-        if (incidentRequestDTO.getStatus() != null)
-            incidentTicket.setStatus(incidentStatusService.findIncidentStatusByStatusId(incidentRequestDTO.getStatus()));
+        if (incidentTicketRequestDTO.getStatus() != null)
+            incidentTicket.setStatus(incidentStatusService.getIncidentStatus(incidentTicketRequestDTO.getStatus()));
 
-        if (incidentRequestDTO.getTimeWorked() != null)
+        if (incidentTicketRequestDTO.getTimeWorked() != null)
             incidentTicket.setTimeWorked(incidentTicket.getTimeWorked());
 
         return incidentTicket;

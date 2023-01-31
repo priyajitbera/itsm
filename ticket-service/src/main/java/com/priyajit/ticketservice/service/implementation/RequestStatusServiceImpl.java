@@ -2,13 +2,14 @@ package com.priyajit.ticketservice.service.implementation;
 
 import com.priyajit.ticketservice.entity.RequestStatus;
 import com.priyajit.ticketservice.repository.RequestStatusRepository;
+import com.priyajit.ticketservice.service.RequestStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RequestStatusServiceImpl {
+public class RequestStatusServiceImpl implements RequestStatusService {
 
     @Autowired
     private RequestStatusRepository requestStatusRepository;
@@ -19,7 +20,7 @@ public class RequestStatusServiceImpl {
         requestStatuses = requestStatusRepository.findAll();
     }
 
-    public RequestStatus getRequestStatusByStatusId(Integer statusId){
+    public RequestStatus getRequestStatus(Integer statusId){
         if(requestStatuses == null) loadRequestStatuses();
         return requestStatuses.stream()
                 .filter(requestStatus -> requestStatus.getStatusId().equals(statusId))

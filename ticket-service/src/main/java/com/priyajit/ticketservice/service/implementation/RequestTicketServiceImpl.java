@@ -4,6 +4,7 @@ import com.priyajit.ticketservice.dto.RequestTicketRequestDTO;
 import com.priyajit.ticketservice.entity.RequestTicket;
 import com.priyajit.ticketservice.factory.RequestTicketFactory;
 import com.priyajit.ticketservice.repository.RequestTicketRepository;
+import com.priyajit.ticketservice.service.RequestStatusService;
 import com.priyajit.ticketservice.service.RequestTicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
