@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class IncidentRequestDTO {
+public class IncidentTicketRequestDTO {
 
     private Long ticketId;
 

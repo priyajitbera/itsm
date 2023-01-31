@@ -9,7 +9,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class IncidentResponseDTO {
+public class IncidentTicketResponseDTO {
 
     private Long ticketId;
 
